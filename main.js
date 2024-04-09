@@ -3,7 +3,7 @@ const screen1 = document.querySelector('.screen1')
 const screen2 = document.querySelector('.screen2')
 const btnTry = document.querySelector("#btnTry")
 const btnReset = document.querySelector("#btnReset")
-const randomNumber = Math.round(Math.random() * 10)
+let randomNumber = Math.round(Math.random() * 10)
 let xAttempts = 1
 
 // Eventos
@@ -14,8 +14,9 @@ btnReset.addEventListener("click", handleResetClick)
 function handleTryClick(event) {
   event.preventDefault()
   const inputNumber = document.querySelector('#inputNumber')
+  const numberEntered = Number(inputNumber.value)
 
-  if (Number(inputNumber.value) == randomNumber) {
+  if (numberEntered == randomNumber) {
     toggleScreen()
     screen2.querySelector("h2").innerHTML = `Parabéns você acertou em ${xAttempts} tentativas, O número era o ${randomNumber}`
   }
@@ -27,6 +28,7 @@ function handleTryClick(event) {
 function handleResetClick() {
   toggleScreen()
   xAttempts = 1
+  randomNumber = Math.round(Math.random() * 10)
 }
 
 function toggleScreen() {
